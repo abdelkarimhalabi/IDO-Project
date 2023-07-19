@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { SearcheService } from './searche.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,7 +31,9 @@ import { TaskCardComponent } from './task-card/task-card.component';
     ReactiveFormsModule,
     DragDropModule,
   ],
-  providers: [],
+  providers: [
+    SearcheService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

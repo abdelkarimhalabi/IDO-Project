@@ -11,8 +11,8 @@ import {
 } from '@angular/cdk/drag-drop';
 import { TaskCardComponent } from '../task-card/task-card.component';
 import { NavbarComponent } from '../navbar/navbar.component';
-
-
+import { SearcheService } from '../searche.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-to-do-list',
@@ -21,7 +21,13 @@ import { NavbarComponent } from '../navbar/navbar.component';
 })
 export class ToDoListComponent implements OnInit {
 
-  constructor(private tokenService : TokenService , private service : TaskService , private elementRef: ElementRef) { }
+  private searchTextSubscription?: Subscription;
+
+  constructor(private tokenService : TokenService , private service : TaskService , private elementRef: ElementRef , private searchService : SearcheService) { 
+    this.searchTextSubscription = this.searchService.searchText$.subscribe((searchText: string) => {
+      this.searchText = searchText;
+    });
+  }
 
   todo : TaskCard[] = [];
   doing : TaskCard[] = [];
@@ -30,6 +36,7 @@ export class ToDoListComponent implements OnInit {
   isEditing: boolean = false;
   isSearchEmpty : boolean = false;
   searchText: string = '';
+  private textSubscription?: Subscription;
   
   @ViewChild(NavbarComponent) navbarComponent!: NavbarComponent;
   @ViewChildren(TaskCardComponent) cardComponents!: QueryList<TaskCardComponent>;
@@ -40,7 +47,6 @@ export class ToDoListComponent implements OnInit {
       tasksList.forEach((task : any) => {
         let newTask = new TaskCard();
         Object.assign(newTask, task);
-        console.log(newTask);
         newTask.date = this.convertDateFormat(newTask.date);
         newTask.changeImportance();
         if(newTask.statusId == 1){
@@ -55,6 +61,12 @@ export class ToDoListComponent implements OnInit {
       })
 
       this.sortTasks();
+    });
+
+    this.searchService.searchText$.subscribe((searchText: string) => {
+      this.searchText = searchText;
+      // Implement your logic here when search text is updated
+      console.log('Search text updated in ToDoListComponent:', this.searchText);
     });
   }
 
@@ -145,10 +157,8 @@ export class ToDoListComponent implements OnInit {
     this.sortTasks();
   }
 
-  onSearchTextChanged(searchText: string) {
-    this.searchText = searchText;
-    this.isSearchEmpty = searchText.trim() === '';
-    console.log(this.searchText);
-    console.log('Is Search Empty:', this.isSearchEmpty);
+  onButtonClick() {
+    console.log("From parent",this.searchService.currenSearchText);
+    // Add your desired functionality here
   }
 }

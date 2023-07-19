@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { TokenService } from '../token.service';
 import { Router } from '@angular/router';
 import { Subject, debounceTime } from 'rxjs';
+import { SearcheService } from '../searche.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,15 +15,16 @@ export class NavbarComponent implements OnInit {
   quote : string = "Anything that can go wrong, will go wrong!";
 
   @Output() createNewObject = new EventEmitter<void>();
-  @Output() searchTextChanged = new EventEmitter<string>();
+  // @Output() searchTextChanged = new EventEmitter<string>();
+  @Output() searchButtonClicked = new EventEmitter<void>();
  
-  searchText: string = '';
+  public searchText: string = '';
   private searchTextChangedSubject = new Subject<string>();
 
   onClickCreateNewObject() {
     this.createNewObject.emit();
   }
-  constructor(private tokenService : TokenService ,  private router : Router) {
+  constructor(private tokenService : TokenService ,  private router : Router , private searchService : SearcheService ) {
 
    }
 
@@ -30,12 +32,8 @@ export class NavbarComponent implements OnInit {
   }
 
 
-   onSearchTextChanged() {
-    this.searchTextChangedSubject.next(this.searchText);
-  }
-
   onClickSearch() {
-    this.searchTextChanged.emit(this.searchText);
+    this.searchButtonClicked.emit();
   }
   logOut(){
     this.tokenService.removeToken();
@@ -49,4 +47,12 @@ export class NavbarComponent implements OnInit {
   changeUserInfoShowStatus(){
     this.userInfoShow = !this.userInfoShow;
   }
+  onSearchInputChanged(e:any) {
+    this.searchService.setSearchText(e.target.value);
+  }
+
+  search(e : any){
+    //this.searchService.setTextWithoutObservable(e.target.value);
+  }
+
 }

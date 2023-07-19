@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<app-navbar (createNewObject)="createNewObject()"></app-navbar>
+<app-navbar (createNewObject)="createNewObject()" (searchButtonClicked)="onButtonClick()"></app-navbar>
 <body>
 
   <div class="container-fluid">
@@ -21,7 +21,12 @@
           [cdkDropListConnectedTo]="[doingList, doneList]"
           (cdkDropListDropped)="drop($event)"
         >
-          <app-task-card class="example-box" *ngFor="let item of todo" [task]="item"  (dataEvent)="receiveData($event)" cdkDrag>{{ item }}</app-task-card>
+        <ng-container  *ngFor="let item of todo">
+          <app-task-card class="example-box"  [task]="item"
+           (dataEvent)="receiveData($event)" 
+           *ngIf="searchText.trim() === '' || item.title.includes(searchText)"
+           cdkDrag>{{ item }}</app-task-card>
+          </ng-container>
         </div>
       </div>
       <div class="col">
@@ -38,7 +43,12 @@
           [cdkDropListConnectedTo]="[todoList, doneList]"
           (cdkDropListDropped)="drop($event)"
         >
-          <app-task-card class="example-box" *ngFor="let item of doing" [task]="item" (dataEvent)="receiveData($event)" cdkDrag>{{ item }}</app-task-card>
+        <ng-container  *ngFor="let item of doing">
+          <app-task-card class="example-box" [task]="item" 
+          (dataEvent)="receiveData($event)"
+          *ngIf="searchText.trim() === '' || item.title.includes(searchText)" 
+          cdkDrag>{{ item }}</app-task-card>
+        </ng-container>
         </div>
       </div>
       <div class="col">
@@ -54,7 +64,15 @@
           [cdkDropListConnectedTo]="[todoList, doingList]"
           (cdkDropListDropped)="drop($event)"
         >
-          <app-task-card class="example-box" *ngFor="let item of done" [task]="item"  (dataEvent)="receiveData($event)" cdkDrag>{{ item }}</app-task-card>
+        <ng-container *ngFor="let item of done">
+          <app-task-card 
+            class="example-box"
+            [task]="item"  
+            (dataEvent)="receiveData($event)"
+            *ngIf="searchText.trim() === '' || item.title.includes(searchText)" 
+            cdkDrag
+          >{{ item }}</app-task-card>
+        </ng-container>
         </div>
       </div>
     </div>
