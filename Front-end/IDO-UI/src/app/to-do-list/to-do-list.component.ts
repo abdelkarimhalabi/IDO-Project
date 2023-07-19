@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit , HostListener , ViewChildren, QueryList} from '@angular/core';
+import { Component, ElementRef, OnInit , HostListener , ViewChildren, QueryList, ViewChild} from '@angular/core';
 import { TaskCard } from 'src/Models/TaskCard';
 import { TokenService } from '../token.service';
 import { TaskService } from '../task.service';
@@ -10,6 +10,7 @@ import {
   CdkDropList,
 } from '@angular/cdk/drag-drop';
 import { TaskCardComponent } from '../task-card/task-card.component';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 
 
@@ -27,14 +28,16 @@ export class ToDoListComponent implements OnInit {
   done : TaskCard[] = [];
 
   isEditing: boolean = false;
-
+  isSearchEmpty : boolean = false;
+  searchText: string = '';
+  
+  @ViewChild(NavbarComponent) navbarComponent!: NavbarComponent;
   @ViewChildren(TaskCardComponent) cardComponents!: QueryList<TaskCardComponent>;
   receivedData?: TaskCard;
 
   ngOnInit(): void {
     this.service.getUserTasks(this.tokenService.getToken()).subscribe((tasksList : any) => {
       tasksList.forEach((task : any) => {
-        console.log(task);
         let newTask = new TaskCard();
         Object.assign(newTask, task);
         console.log(newTask);
@@ -79,7 +82,6 @@ export class ToDoListComponent implements OnInit {
     for (const dropList of connectedToDropLists) {
       // Access the data from each connected drop list
       const connectedData: TaskCard[] = dropList.data;
-      // console.log('Connected Data:', connectedData);
     }
   }
 
@@ -87,7 +89,7 @@ export class ToDoListComponent implements OnInit {
     if (!inputDate) return '';
   
     const [day, month, year] = inputDate.split('/');
-    const fullYear = '20' + year; // Add the full year, assuming that the 1900s are used for "yy" format
+    const fullYear = '20' + year; 
   
     return `${fullYear}/${month}/${day}`;
    }
@@ -95,7 +97,6 @@ export class ToDoListComponent implements OnInit {
   toggleEditMode() {
     this.isEditing = !this.isEditing;
   }
-    // console.log(event.container.data.find((task : TaskCard) => task.));
   sortTasks(){
     this.todo.sort((a, b) => a.position - b.position);
     this.doing.sort((a, b) => a.position - b.position);
@@ -144,4 +145,10 @@ export class ToDoListComponent implements OnInit {
     this.sortTasks();
   }
 
+  onSearchTextChanged(searchText: string) {
+    this.searchText = searchText;
+    this.isSearchEmpty = searchText.trim() === '';
+    console.log(this.searchText);
+    console.log('Is Search Empty:', this.isSearchEmpty);
+  }
 }

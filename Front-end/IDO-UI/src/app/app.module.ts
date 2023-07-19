@@ -12,7 +12,6 @@ import { LoginComponent } from './login/login.component';
 import { ToDoListComponent } from './to-do-list/to-do-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TaskCardComponent } from './task-card/task-card.component';
-import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +20,6 @@ import { TestComponent } from './test/test.component';
     ToDoListComponent,
     NavbarComponent,
     TaskCardComponent,
-    TestComponent
   ],
   imports: [
     BrowserModule,

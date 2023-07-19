@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       }),
       catchError((error: any) => {
         this.loginFailed();
-        return of(error); // Return a new observable to continue the error flow
+        return of(error);
       })
     ).subscribe()
   }

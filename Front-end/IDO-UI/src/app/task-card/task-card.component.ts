@@ -37,7 +37,7 @@ export class TaskCardComponent implements OnInit {
   }
 
   saveData(){
-    //console.log(this.task)
+    
   }
 
   saveDataAndToggleEditMode() {
