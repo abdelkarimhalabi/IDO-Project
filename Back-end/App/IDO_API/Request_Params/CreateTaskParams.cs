@@ -2,12 +2,12 @@
 {
     public class CreateTaskParams
     {
-        public int statusId { get; set; }
-        public int importanceId { get; set; }
-        public int estimate { get; set; }
-        public int position { get; set; }
-        public string date { get; set; }
-        public string title { get; set; }
+        public int StatusId { get; set; }
+        public int ImportanceId { get; set; }
+        public int Estimate { get; set; }
+        public int Position { get; set; }
+        public string Date { get; set; }
+        public string Title { get; set; }
         public string Category { get; set; }
     }
 }

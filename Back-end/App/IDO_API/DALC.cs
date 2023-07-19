@@ -1,6 +1,7 @@
 ﻿using IDO_API.Entities;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 
 namespace IDO_API
 {
@@ -25,35 +26,32 @@ namespace IDO_API
                     using (SqlCommand _cmd = new SqlCommand(SqlOperation, _con))
                     {
                         _cmd.CommandType = CommandType.StoredProcedure;
-                        _cmd.Parameters.AddWithValue("@USER_ID", task.userId);
-                        _cmd.Parameters.AddWithValue("@STATUS_ID", task.statusId);
-                        _cmd.Parameters.AddWithValue("@IMPORTANCE_ID", task.importanceId);
-                        _cmd.Parameters.AddWithValue("@ESTIMATE", task.estimate);
-                        _cmd.Parameters.AddWithValue("@DUE_DATE", task.date);
-                        _cmd.Parameters.AddWithValue("@TITLE", task.title);
+                        _cmd.Parameters.AddWithValue("@USER_ID", task.UserId);
+                        _cmd.Parameters.AddWithValue("@STATUS_ID", task.StatusId);
+                        _cmd.Parameters.AddWithValue("@IMPORTANCE_ID", task.ImportanceId);
+                        _cmd.Parameters.AddWithValue("@ESTIMATE", task.Estimate);
+                        _cmd.Parameters.AddWithValue("@DUE_DATE", task.Date);
+                        _cmd.Parameters.AddWithValue("@TITLE", task.Title);
                         _cmd.Parameters.AddWithValue("@CATEGORY", task.Category);
-                        _cmd.Parameters.AddWithValue("@POSITION", task.position);
+                        _cmd.Parameters.AddWithValue("@POSITION", task.Position);
                         SqlDataReader reader = _cmd.ExecuteReader();
                         if (reader.HasRows)
                         {
                             reader.Read();
                             oTask newTask = new oTask();
-                            newTask.id = reader.GetInt32("TASK_ID");
-                            newTask.userId = reader.GetInt32("USER_ID");
-                            newTask.statusId = reader.GetInt32("STATUS_ID");
-                            newTask.importanceId = reader.GetInt32("IMPORTANCE_ID");
-                            newTask.estimate = reader.GetInt32("ESTIMATE");
-                            newTask.date = DateOnly.FromDateTime(reader.GetDateTime("DUE_DATE")).ToString();
-                            newTask.title = reader.GetString("TITLE");
+                            newTask.Id = reader.GetInt32("TASK_ID");
+                            newTask.UserId = reader.GetInt32("USER_ID");
+                            newTask.StatusId = reader.GetInt32("STATUS_ID");
+                            newTask.ImportanceId = reader.GetInt32("IMPORTANCE_ID");
+                            newTask.Estimate = reader.GetInt32("ESTIMATE");
+                            newTask.Date = DateOnly.FromDateTime(reader.GetDateTime("DUE_DATE")).ToString();
+                            newTask.Title = reader.GetString("TITLE");
                             newTask.Category = reader.GetString("CATEGORY");
-                            newTask.position = reader.GetInt32("POSITION");
+                            newTask.Position = reader.GetInt32("POSITION");
 
                             return newTask;
                         }
-                        else
-                        {
-                            return null;
-                        }
+                        return null;
                     }
                 }
             }catch (Exception ex)
@@ -106,30 +104,28 @@ namespace IDO_API
                             while (reader.Read())
                             {
                                 oTask task = new oTask();
-                                task.id = reader.GetInt32("ID");
-                                task.userId = reader.GetInt32("USER_ID");
-                                task.importanceId = reader.GetInt32("IMPORTANCE_ID");
-                                task.estimate = reader.GetInt32("ESTIMATE");
-                                task.date = DateOnly.FromDateTime(reader.GetDateTime("DUE_DATE")).ToString();
-                                task.title = reader.GetString("TITLE");
+                                task.Id = reader.GetInt32("ID");
+                                task.UserId = reader.GetInt32("USER_ID");
+                                task.ImportanceId = reader.GetInt32("IMPORTANCE_ID");
+                                task.Estimate = reader.GetInt32("ESTIMATE");
+                                task.Date = DateOnly.FromDateTime(reader.GetDateTime("DUE_DATE")).ToString("yy/MM/dd" , CultureInfo.InvariantCulture);
+                                task.Title = reader.GetString("TITLE");
                                 task.Category = reader.GetString("CATEGORY");
-                                task.position = reader.GetInt32("POSITION");
-                                task.statusId = reader.GetInt32("STATUS_ID");
+                                task.Position = reader.GetInt32("POSITION");
+                                task.StatusId = reader.GetInt32("STATUS_ID");
 
                                 tasks.Add(task);
                             }
 
                             return tasks;
                         }
-                        else
-                        {
-                            return null;
-                        }
+                        return null;
                     }
                 }
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return null;
             }
         }
@@ -145,41 +141,39 @@ namespace IDO_API
                     using (SqlCommand _cmd = new SqlCommand(SqlOperation, _con))
                     {
                         _cmd.CommandType = CommandType.StoredProcedure;
-                        _cmd.Parameters.AddWithValue("@USER_ID", task.userId);
-                        _cmd.Parameters.AddWithValue("@TASK_ID", task.id);
-                        _cmd.Parameters.AddWithValue("@STATUS_ID", task.statusId);
-                        _cmd.Parameters.AddWithValue("@IMPORTANCE_ID", task.importanceId);
-                        _cmd.Parameters.AddWithValue("@ESTIMATE", task.estimate);
-                        _cmd.Parameters.AddWithValue("@DUE_DATE", task.date);
-                        _cmd.Parameters.AddWithValue("@TITLE", task.title);
+                        _cmd.Parameters.AddWithValue("@USER_ID", task.UserId);
+                        _cmd.Parameters.AddWithValue("@TASK_ID", task.Id);
+                        _cmd.Parameters.AddWithValue("@STATUS_ID", task.StatusId);
+                        _cmd.Parameters.AddWithValue("@IMPORTANCE_ID", task.ImportanceId);
+                        _cmd.Parameters.AddWithValue("@ESTIMATE", task.Estimate);
+                        _cmd.Parameters.AddWithValue("@DUE_DATE", task.Date);
+                        _cmd.Parameters.AddWithValue("@TITLE", task.Title);
                         _cmd.Parameters.AddWithValue("@CATEGORY", task.Category);
-                        _cmd.Parameters.AddWithValue("@POSITION", task.position);
+                        _cmd.Parameters.AddWithValue("@POSITION", task.Position);
                         SqlDataReader reader = _cmd.ExecuteReader();
                         if (reader.HasRows)
                         {
                             reader.Read();
                             oTask editedTask = new oTask();
-                            editedTask.id = reader.GetInt32("ID");
-                            editedTask.userId = task.userId;
-                            editedTask.statusId = reader.GetInt32("STATUS_ID");
-                            editedTask.importanceId = reader.GetInt32("IMPORTANCE_ID");
-                            editedTask.estimate = reader.GetInt32("ESTIMATE");
-                            editedTask.date = DateOnly.FromDateTime(reader.GetDateTime("DUE_DATE")).ToString();
-                            editedTask.title = reader.GetString("TITLE");
+                            editedTask.Id = reader.GetInt32("ID");
+                            editedTask.UserId = task.UserId;
+                            editedTask.StatusId = reader.GetInt32("STATUS_ID");
+                            editedTask.ImportanceId = reader.GetInt32("IMPORTANCE_ID");
+                            editedTask.Estimate = reader.GetInt32("ESTIMATE");
+                            editedTask.Date = DateOnly.FromDateTime(reader.GetDateTime("DUE_DATE")).ToString("yy/MM/dd", CultureInfo.InvariantCulture);
+                            editedTask.Title = reader.GetString("TITLE");
                             editedTask.Category = reader.GetString("CATEGORY");
-                            editedTask.position = reader.GetInt32("POSITION");
+                            editedTask.Position = reader.GetInt32("POSITION");
 
                             return editedTask;
                         }
-                        else
-                        {
-                            return null;
-                        }
+                        return null;
                     }
                 }
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return null ;
             }
         }
@@ -202,22 +196,20 @@ namespace IDO_API
                         {
                             Login login = new Login();
                             reader.Read();
-                            login.id = reader.GetInt32("ID");
-                            login.email = reader.GetString("EMAIL");
-                            login.password = reader.GetString("PASSWORD");
-                            login.isAdmin = reader.GetBoolean("IS_ADMIN");
+                            login.Id = reader.GetInt32("ID");
+                            login.Email = reader.GetString("EMAIL");
+                            login.Password = reader.GetString("PASSWORD");
+                            login.IsAdmin = reader.GetBoolean("IS_ADMIN");
 
                             return login;
                         }
-                        else
-                        {
-                            return null;
-                        }
+                        return null;
                     }
                 }
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return null;
             }
         }
@@ -240,20 +232,17 @@ namespace IDO_API
                             User user = new User();
 
                             reader.Read();
-                            user.id = reader.GetInt32("ID");
-                            user.name = reader.GetString("NAME");
-                            user.loginId = reader.GetInt32("LOGIN_ID");
+                            user.Id = reader.GetInt32("ID");
+                            user.Name = reader.GetString("NAME");
+                            user.LoginId = reader.GetInt32("LOGIN_ID");
                             if (!reader.IsDBNull(reader.GetOrdinal("PROFILE_URL")))
                             {
-                                user.profileUrl = reader.GetString(reader.GetOrdinal("PROFILE_URL"));
+                                user.ProfileUrl = reader.GetString(reader.GetOrdinal("PROFILE_URL"));
                             }
 
                             return user;
                         }
-                        else
-                        {
-                            return null;
-                        }
+                        return null;
                     }
                 }
             }

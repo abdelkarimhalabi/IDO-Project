@@ -1,0 +1,16 @@
+body{
+    min-height:100vh; 
+    /*background:url('https://i.imgur.com/RQtXQkF.jpg') no-repeat center center fixed;*/
+    -webkit-background-size:cover;
+    -o-background-size:cover;
+    -moz-background-size:cover;
+    background-size:cover;
+    margin:0px;
+    height:100%;
+    width:100%;
+    background-color: rgb(91,94,96);
+}
+
+html{
+    background-color: rgb(91,94,96);
+  }

@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+body{
+    min-height:100vh; 
+    background:url('https://i.imgur.com/RQtXQkF.jpg') no-repeat center center fixed 0;
+    -webkit-background-size:cover;
+    -o-background-size:cover;
+    -moz-background-size:cover;
+    background-size:cover;
+    margin:0px;
+    height:100%;
+    width:100%;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.bg-image {
+    background-image: url('../../assets/Login.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.loginInput {
+    border: none;
+    outline: none;
+    background-color: rgb(34,34,34) !important;;
+    color: white;
+}  
+
+.loginFailed{
+    border: 1px solid;
+    border-color: red;
+}

@@ -1,0 +1,145 @@
+.searchButton {
+    position: relative;
+    z-index: 1;
+    border-radius: 0 0.25rem 0.25rem 0;
+    margin-left: -1px;
+    border-radius: 25px;
+    border-left : none;
+    background-color: rgb(33,37,41);
+    border-color: rgb(33,37,41);
+  }
+
+  .addButton{
+    border-radius: 50%;
+  }
+
+  .profileButton{
+    border-radius: 50%;
+  }
+
+  .profileButton img{
+    border-radius: 50%;
+  }
+
+  .searchButton img:hover + .search-input{
+
+    color : white;
+    border-radius: 25px;
+    border-right: none;
+    border-color: rgb(130,108,162);
+    pointer-events: none;
+  }
+
+  .search-input{
+    color: azure;
+    border-radius: 25px;
+    background-color: rgb(33,37,41);
+    border-color: rgb(33,37,41);
+    border-right: none;
+  }
+
+  .searchButton:hover{
+    border-radius: 25px;
+    border-left: none;
+    border-color: rgb(130,108,162);
+  }
+
+  .search-input:hover {
+    color : white;
+    border-radius: 25px;
+    border-right: none;
+    border-color: rgb(130,108,162);
+  }
+
+  .search-input:hover + .searchButton{
+    background-color: rgb(33,37,41);
+    border-color: rgb(130,108,162);
+    border-left: none;
+  }
+
+  .search-input:hover::placeholder{
+    font-size: small;
+    color: azure;
+  }
+
+  .searchButton:hover + .search-input{
+    color : white;
+    border-radius: 25px;
+    border-right: none;
+    border-color: rgb(130,108,162);
+  } 
+
+  img{
+    border: none;
+  }
+
+
+  .quoteBanner{
+    background-image: linear-gradient(to bottom right,rgb(104,72,137),rgb(67,54,102));
+    padding:0.5%;
+    color : azure;
+    display: flex;
+  justify-content: space-between;
+  align-items: center;
+  }
+
+  .quoteBanner p{
+    padding-left: 1.6%;
+    font-size: 17px;
+  }
+
+  .icon-button{
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  .icon-button img{
+    fill: red; /* Set the fill color on hover */
+  }
+
+  .left-div {
+    position: fixed;
+    left: 98%;
+    margin-top: 1.2%;
+  }
+
+  .logOutDiv{
+    position: absolute;
+    z-index: 1;
+    width: 250px;
+    height: 105px;
+    top: 53px;
+    background-color: rgb(35,35,35);
+    right: 38px;
+
+    display: flex;
+    align-items: center;
+}
+
+.left-content {
+  margin-right: 10px; /* Adjust the margin as needed */
+}
+
+.right-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.logOutButton{
+
+  color: #f0f2f5;
+}
+
+.logOutButton  :hover{
+  border : 1px;
+  border-color: blueviolet;
+}
+
+.logOutButton img :hover{
+  border : 1px;
+  border-color: blueviolet;
+}

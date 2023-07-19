@@ -1,0 +1,48 @@
+ html{
+  background-color: rgb(91,94,96);
+}
+body{
+  background-color: rgb(91,94,96);
+}
+
+.cardBody{
+  background-color: rgb(33,37,41);
+  color: azure;
+}
+
+.cardBody input{
+  background-color: rgb(33,37,41);
+  color: azure;
+  border: none;
+}
+
+p{
+  color: azure;
+}
+.cardBodyText{
+  color: #625F5F;
+}
+
+.low {
+  display: inline-block;
+  background-color: rgb(57,172,149);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.medium {
+  display: inline-block;
+  background-color: rgb(254,145,62);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.high{
+    display: inline-block;
+    background-color: rgb(220,53,69);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}

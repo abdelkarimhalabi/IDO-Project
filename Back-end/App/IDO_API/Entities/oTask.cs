@@ -2,16 +2,16 @@
 {
     public class oTask
     {
-        public int id { get; set; }
-        public int userId { get; set; }
-        public int statusId { get; set; }
-        public int importanceId { get; set; }
-        public int estimate { get; set; }
-        public int position { get; set; }
-        public string date { get; set; }
-        public string title { get; set; }
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public int StatusId { get; set; }
+        public int ImportanceId { get; set; }
+        public int Estimate { get; set; }
+        public int Position { get; set; }
+        public string Date { get; set; }
+        public string Title { get; set; }
         public string Category { get; set; }
-        public TaskStatus status { get; set; }
-        public TaskImportance   importance { get; set; }
+        public TaskStatus Status { get; set; }
+        public TaskImportance   Importance { get; set; }
     }
 }

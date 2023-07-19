@@ -1,0 +1,74 @@
+<div class="card" style="background-color: rgb(33,37,41);">
+  <div class="card-body cardBody" style="width: 402px;">
+    <h3 class="card-title" ><input type="text" value="{{task.title}}" style="border: none;" [(ngModel)]="task.title" (click)="toggleEditMode()"></h3>
+    <div class="row">
+      <div class="col-sm-6">
+        <h4 class="card-subtitle mb-2 cardBodyText">Category</h4>
+      </div>
+      <div class="col-sm-6">
+        <ng-container *ngIf="!isEditing; else editCategory">
+          <!-- Display category -->
+          <p (click)="toggleEditMode()">{{ task.category }}</p>
+        </ng-container>
+        <ng-template #editCategory>
+          <!-- Edit category -->
+          <input type="text" class="form-control" [(ngModel)]="task.category">
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <h4 class="card-subtitle mb-2 cardBodyText">Due Date</h4>
+      </div>
+      <div class="col-sm-6">
+        <ng-container *ngIf="!isEditing; else editDueDate">
+          <!-- Display due date -->
+          <p (click)="toggleEditMode()">{{ task.date }}</p>
+        </ng-container>
+        <ng-template #editDueDate>
+          <!-- Edit due date -->
+          <input type="date" class="form-control" [(ngModel)]="task.date">
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <h4 class="card-subtitle mb-2 cardBodyText" (click)="toggleEditMode()">Estimate</h4>
+      </div>
+      <div class="col-sm-6">
+        <ng-container *ngIf="!isEditing; else editEstimate">
+          <!-- Display estimate -->
+          <p (click)="toggleEditMode()">{{ task.estimate }}</p>
+        </ng-container>
+        <ng-template #editEstimate>
+          <!-- Edit estimate -->
+          <input type="number" class="form-control" [(ngModel)]="task.estimate">
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <h4 class="card-subtitle mb-2 cardBodyText" (click)="toggleEditMode()">Importance</h4>
+      </div>
+      <div class="col-sm-6">
+        <ng-container *ngIf="!isEditing; else editImportance">
+          <!-- Display importance -->
+          <p class="importance" (click)="toggleEditMode()" [ngClass]="{'low' : task.importanceId == 1 , 'medium' : task.importanceId == 2 , 'high' : task.importanceId == 3}">
+            {{ task.importance }}
+          </p>
+        </ng-container>
+        <ng-template #editImportance>
+          <!-- Edit importance -->
+          <select class="form-select" [(ngModel)]="task.importanceId">
+            <option value="1">Low</option>
+            <option value="2">Medium</option>
+            <option value="3">High</option>
+          </select>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

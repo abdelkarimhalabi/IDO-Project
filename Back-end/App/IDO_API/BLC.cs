@@ -14,15 +14,15 @@ namespace IDO_API
 
         public TokenData Login(LoginParams loginParams)
         {
-            Login loginResult = this._dalc.getLogin(loginParams.email, loginParams.password);
+            Login loginResult = this._dalc.getLogin(loginParams.Email, loginParams.Password);
             if (loginResult != null)
             {
-                User user = this._dalc.getUser(loginResult.id);
+                User user = this._dalc.getUser(loginResult.Id);
                 if (user != null)
                 {
                     TokenData tokenData = new TokenData {
-                        UserId = user.id,
-                        IsAdmin = loginResult.isAdmin,
+                        UserId = user.Id,
+                        IsAdmin = loginResult.IsAdmin,
                     };
                     return tokenData;
                 }
@@ -34,14 +34,14 @@ namespace IDO_API
         public oTask createTask(CreateTaskParams taskParams , int userId)
         {
             oTask task = new oTask();
-            task.userId = userId;
-            task.importanceId = taskParams.importanceId;
-            task.statusId = taskParams.statusId;
-            task.estimate = taskParams.estimate;
-            task.date = taskParams.date;
+            task.UserId = userId;
+            task.ImportanceId = taskParams.ImportanceId;
+            task.StatusId = taskParams.StatusId;
+            task.Estimate = taskParams.Estimate;
+            task.Date = taskParams.Date;
             task.Category = taskParams.Category;
-            task.title = taskParams.title;
-            task.position = taskParams.position;
+            task.Title = taskParams.Title;
+            task.Position = taskParams.Position;
 
             return this._dalc.createTask(task);
         }
@@ -59,15 +59,15 @@ namespace IDO_API
         public oTask editTask(EditTaskParams taskParams , int userId)
         {
             oTask task = new oTask();
-            task.id = taskParams.id;
-            task.userId = userId;
-            task.importanceId = taskParams.importanceId;
-            task.statusId = taskParams.statusId;
-            task.estimate = taskParams.estimate;
-            task.date = taskParams.date;
+            task.Id = taskParams.Id;
+            task.UserId = userId;
+            task.ImportanceId = taskParams.ImportanceId;
+            task.StatusId = taskParams.StatusId;
+            task.Estimate = taskParams.Estimate;
+            task.Date = taskParams.Date;
             task.Category = taskParams.Category;
-            task.title = taskParams.title;
-            task.position = taskParams.position;
+            task.Title = taskParams.Title;
+            task.Position = taskParams.Position;
 
             return this._dalc.editTask(task);
         }

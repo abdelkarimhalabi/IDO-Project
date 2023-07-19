@@ -1,0 +1,31 @@
+<body>
+    <div class="container-fluid h-100" style="background-image: linear-gradient(to bottom right,rgb(129,84,161) ,rgb(104,72,137),rgb(67,54,102))">
+        <div class="row h-100">
+          <div class="col-md-6 bg-image"></div>
+          <div class="col-md-6 d-flex align-items-center">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-md-8">
+                  <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <p class="text mb-4" style="font-size: 65px;  margin-bottom: 20px; color: azure;">Time To Work!</p>
+                    <div class="mb-3">
+                      <label for="email" class="form-label" style="color: azure;">Email</label>
+                      <input type="email" class="form-control loginInput" id="email" formControlName="Email" [ngClass]="{'loginFailed' : invalidCredentials}">
+                      <p *ngIf="invalidCredentials" style="color: red;">Invalid email</p>
+                    </div>
+                    <div class="mb-3">
+                      <label for="password" class="form-label" style="color: azure;">Password</label>
+                      <input type="password" class="form-control loginInput" id="password" formControlName="Password" [ngClass]="{'loginFailed' : invalidCredentials}">
+                      <p *ngIf="invalidCredentials" style="color: red;">Incorrect Password</p>
+                    </div>
+                    <div class="d-grid gap-2">
+                      <button type="submit" class="btn btn-ligh" style="border-radius: 25px; background-color: rgb(182,163,194); color: rgb(64,53,100);font-weight: bold;"  [disabled]="loginForm.invalid">SIGN IN</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</body>

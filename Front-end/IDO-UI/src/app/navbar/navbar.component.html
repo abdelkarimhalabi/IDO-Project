@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container-fluid">
+    <div class="d-flex align-items-center">
+      <!-- Navbar brand/logo on the left -->
+      <a class="navbar-brand" href="javascript:void(0)">
+        <img src="../../assets/logo.png" width="75" height="60" />
+      </a>
+
+      <!-- Navbar toggler button -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
+      <!-- Navbar elements on the right -->
+      <ul class="navbar-nav">
+        <!-- Search field with search button -->
+        <form class="d-flex">
+          <div class="input-group">
+            <input type="text" class="form-control  search-input" placeholder="What are you looking for?" aria-label="Search" aria-describedby="search-addon">
+            <button class="btn searchButton" type="button" id="search-addon">
+              <img src="../../assets/searchsvg.svg" alt="Icon" width="30" height="30">
+            </button>
+          </div>
+        </form>
+        <button class="btn addButton" type="button" id="search-addon" (click)="onClickCreateNewObject()">
+          <img src="../../assets/svgiconpurple.svg" alt="Icon" width="30" height="30">
+        </button>
+        <button class="btn profileButton" type="button" id="search-addon" (click)="changeUserInfoShowStatus()">
+          <img src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?size=626&ext=jpg" alt="Icon" width="30" height="30">
+        </button>
+        <div class="container logOutDiv" *ngIf="userInfoShow">
+            <div class="left-content">
+              <img class="profileButton" src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?size=626&ext=jpg" alt="Icon" width="43" height="43">
+            </div>
+            <div class="right-content">
+              <p style="color: rgb(164,133,194);font-size: small;">ido@gmail.com</p>
+              <button class="btn btn-outline-dark logOutButton" (click)="logOut()">
+                Log Out
+                <img src="../../assets/logout-white-svg.svg" alt="Button Icon" width="25" height="30" class="me-2">
+              </button>
+            </div>
+        </div>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="left-div" *ngIf="!quoteBannerShow">
+  <button class="icon-button" type="button" (click)="changeQuoteBannerStatus()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="rgb(121,101,153)" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+      <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+    </svg>
+  </button>
+</div>
+
+<div *ngIf="quoteBannerShow" class="quoteBanner">
+  <p>"{{quote}}"</p>
+  <button class="icon-button" type="button" (click)="changeQuoteBannerStatus()">
+    <img src="../../assets/exit-white-svg1.svg" alt="Icon" width="16" height="16">
+  </button>
+</div>

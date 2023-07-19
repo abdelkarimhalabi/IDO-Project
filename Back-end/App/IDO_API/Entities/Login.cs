@@ -2,9 +2,9 @@
 {
     public class Login
     {
-        public int id { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public bool isAdmin { get; set; }
+        public int Id { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

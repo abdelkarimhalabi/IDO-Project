@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using IDO_API.Tools;
 using IDO_API.Request_Params;
+using IDO_API.Responses;
 
 namespace IDO_API.Controllers
 {
@@ -21,7 +22,7 @@ namespace IDO_API.Controllers
 
         [Route("Login")]
         [HttpPost]
-        public ActionResult<string> userLogin([FromBody] LoginParams loginParams)
+        public ActionResult<TokenResponse> userLogin([FromBody] LoginParams loginParams)
         {
             try
             {
@@ -29,13 +30,14 @@ namespace IDO_API.Controllers
                 if (loginResult != null)
                 {
                     string token = this.jwtAuth.EncodeToken(loginResult);
-                    return Ok(token);
+                    TokenResponse tokenResponse = new TokenResponse { Token = token};
+                    return Ok(tokenResponse);
                 }
-                return Unauthorized("Invalid credentials");
+                return Unauthorized(new Response {Message = "Unauthorized" });
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return Unauthorized(ex.Message);
             }
         }
     }

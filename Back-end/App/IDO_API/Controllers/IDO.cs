@@ -46,6 +46,7 @@ namespace IDO_API.Controllers
             }
             catch (Exception ex)
             {
+                Console.Write(ex.Message);
                 return StatusCode(500, "Failed to create the task.");
             }
 
@@ -71,6 +72,7 @@ namespace IDO_API.Controllers
             }
             catch (Exception ex)
             {
+                Console.Write(ex.Message);
                 return StatusCode(500, "Failed to delete the task.");
             }
         }
@@ -119,6 +121,7 @@ namespace IDO_API.Controllers
             }
             catch (Exception ex)
             {
+                Console.Write(ex.Message);
                 return StatusCode(500, ex.Message);
             }
         }

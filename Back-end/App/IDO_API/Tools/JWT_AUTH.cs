@@ -26,7 +26,7 @@ namespace IDO_API.Tools
                     new Claim("userId", data.UserId.ToString()),
                     new Claim("isAdmin", data.IsAdmin.ToString())
                 }),
-                Expires = DateTime.UtcNow.AddHours(1),
+                Expires = DateTime.UtcNow.AddDays(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
